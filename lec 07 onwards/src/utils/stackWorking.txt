@@ -1,0 +1,31 @@
+┌───────────────────────────────┐
+│          Your Code            │
+│  throw new ApiError("Oops")   │
+└───────────────┬───────────────┘
+                │
+                ▼
+┌───────────────────────────────┐
+│       ApiError Constructor     │
+│                                │
+│ if(stack)                      │
+│    this.stack = stack          │  <-- Use provided stack if exists
+│ else                           │
+│    Error.captureStackTrace(...)│  <-- Generate automatic stack trace
+└───────────────┬────────────────┘
+                │
+                ▼
+┌───────────────────────────────┐
+│        Error Object           │
+│ .message = "Oops"             │
+│ .stack = "stack trace here..."│
+└───────────────────────────────┘
+                │
+                ▼
+┌────────────────────────────────┐
+│       Console/Error Handler    │
+│ Prints:                        │
+│ Oops                           │
+│ at ApiError (… line info …)    │
+│ at functionThatCalledError()   │
+│ at main()                      │
+└────────────────────────────────┘

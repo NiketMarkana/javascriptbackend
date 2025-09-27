@@ -8,8 +8,9 @@ dotenv.config({
 
 
 
-connectDB()//in index.js from db
+connectDB()//in index.js from db, there is aysnc function. when async is completed then it will return promise.
 .then(() => {
+    //app = express() in app.js
     app.listen(process.env.PORT || 8000, () => {
         console.log(`⚙️ Server is running at port : ${process.env.PORT}`);
     })
